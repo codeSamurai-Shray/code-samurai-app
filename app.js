@@ -21,12 +21,15 @@ function databaseInitialize() {
     if (User === null) {
         User = db.addCollection("users");
         User.insert({username:'admin',password:'admin'});
-        User.insert({username:'user',password:'user'});
+
     }
     if (Item === null) {
         Item = db.addCollection('items');
     }
     console.log(User);
+
+    User.insert({username:'user',password:'user'});
+    User.insert({username:'player',password:'player'});
 }
 
 //EJS
@@ -104,6 +107,14 @@ app.get('/additem', function (request, response) {
 app.post('/login', function (request, response) {
     var loginName = request.body.loginName;
     var password = request.body.password;
+    if (userPasswordMatch(loginName,password)){
+    response.render('listpage', {items: Item.find()});
+}else{
+             response.render('index', {message: null});
+}
+
+
+
 
     // save login name in session so it's available later
     request.session.user = loginName;
@@ -119,10 +130,12 @@ app.post('/login', function (request, response) {
 
 // when save button is clicked on add page
 app.post('/saveitem', function (request, response) {
-
+console.log("save",request)
+    var allitems=saveFormAndReturnAllItems(request.body);
+    console.log("allitems",allitems)
     // hint #1: find the helper function that will help save the information first
     // hint #2: make sure to send the list of items to the list page
-
-    response.render('listpage',{ items:[] });
+response.render('listpage',{ items:allitems });
+    //response.render('listpage',{ items:[allitems] });
 });
 

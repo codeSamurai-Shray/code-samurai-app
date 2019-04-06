@@ -3,19 +3,36 @@
 <head> <% include ./head %> </head>
 <body>
 <% include ./header %>
+<script>
+    function goback(){
+      //  alert("JOHN")
+window.history.back();
+    }
 
+    </script>
 <div class="card">
 
     <form method="post" action="saveitem">
+            Videogame name: <input type="text" name="Videogames"  required/>
+            Artist name: <input type="text" name="Artist"  required/>
+            Rateing out of five stars: <input type="text" name="rateing"  required/>
+            Gendre: <input type="text" name="gendre"  required/>
+            Level of difficulty: <input type="text" name="levelofdifficulty"  required/>
 
 
 
 
 
 
-        Added by: <input type="text" name="addedBy" value="<%=loginName%>" readonly/>
+
+
+
+        Added by: <input type="text" name="addedBy" value="<%=loginName%>" required/>
 
         <button class="btn" type="submit" name="submit">Save Item</button>
+
+           <button class="btn" type="button" onclick="goback()" name="link">Go Back</button>
+
 
     </form>
 

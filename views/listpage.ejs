@@ -10,10 +10,17 @@
 
     <table class="highlight">
         <tr>
-            <th>Song</th><th>Singer</th><th>Added By</th><th>Likes</th><th>Actions</th>
+            <th>Videogames</th><th>rateing</th><th>Artist</th><th>levelofdifficulty </th><th>gendre</th><th>addedBy</th><th>actions</th>
         </tr>
 
         <% items.forEach(function(item){  %>
+        <tr>
+        <td><%=item.Videogames%></td><td><%=item.rateing%></td><td><%=item.Artist%></td><td><%=item.levelofdifficulty%></td><td><%=item.gendre%></td><td><%=item.addedBy%></td><td>
+
+                       <button class="btn" type="button" onclick="goback()" name="link">Delete</button>
+            </td>
+        </tr>
+
 
 
 
